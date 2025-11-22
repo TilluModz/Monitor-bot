@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: monitor-web
+    env: python
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn bot:app --bind 0.0.0.0:$PORT
+
+  - type: worker
+    name: monitor-bot
+    env: python
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
